@@ -1,0 +1,49 @@
+﻿<Window x:Class="KuittiParseri.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kuittiparseri v1.0"
+        Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <!-- Ylätason valikkopalkki -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Tiedosto">
+                <MenuItem Header="Avaa tiedosto..." Click="OpenFile_Click"/>
+                <MenuItem Header="Avaa kansio..." Click="OpenFolder_Click"/>
+                <Separator/>
+                <MenuItem Header="Tulosta raportti" Click="PrintReport_Click"/>
+                <MenuItem Header="Tallenna tietokantaan" Click="SaveToDb_Click"/>
+                <Separator/>
+                <MenuItem Header="_Testi">
+                    <MenuItem Header="Testaa OCR..." Click="TestOcr_Click"/>
+                    <MenuItem Header="Testaa Orchestrator..." Click="TestOrchestrator_Click"/>
+                </MenuItem>
+                <MenuItem Header="Poistu" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Tietoa" Click="Info_Click"/>
+        </Menu>
+
+        <!-- Pääsisältö: DataGrid tuloksille -->
+        <Grid>
+            <DataGrid x:Name="ResultsList"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      Margin="10"
+                      AlternatingRowBackground="LightGray"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="All">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tiedosto" Binding="{Binding FileName}" Width="200"/>
+                    <DataGridTextColumn Header="Koodi" Binding="{Binding Code}" Width="100"/>
+                    <DataGridTextColumn Header="Koodit" Binding="{Binding WorkCodesSummary}" Width="200"/>
+                    <DataGridTextColumn Header="Nimi" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Tunnit" Binding="{Binding Hours}" Width="80"/>
+                    <DataGridTextColumn Header="Palkkajakso" Binding="{Binding PayPeriod}" Width="150"/>
+                    <DataGridTextColumn Header="Virhe" Binding="{Binding Error}" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</Window>
